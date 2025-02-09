@@ -40,19 +40,19 @@ class HistoryScript(scripts.Script):
 
     def ui(self, is_img2img):
         id_part = "img2img" if is_img2img else "txt2img"
-        with gr.Row(elem_id=f"{id_part}_history_top_row", variant="compact", scale=100):
+        with gr.Row(elem_id=f"{id_part}_history_top_row", variant="compact"):
             with gr.Column(elem_id="history_col", scale=11):
                 history_slider = create_history_slider(id_part)
             with gr.Column(elem_id="history_col", scale=1):
                 with gr.Row(elem_id="history_button_row", variant="compact"):
-                    clear_history = gr.Button("Clear", visible=True, label="Clear history")
+                    clear_history = gr.Button("Clear", visible=True, value="Clear history")
                     clear_history.click(
                         fn=lambda *x: x,
                         _js="function(){confirm_clear_history('" + id_part + "')}",
                         inputs=None,
                         outputs=None,
                     )
-                    load_history = gr.Button("Load", visible=True, label="Load history")
+                    load_history = gr.Button("Load", visible=True, value="Load history")
                     load_history.click(
                         fn=lambda *x: x,
                         _js="function(){load_history('" + id_part + "')}",
